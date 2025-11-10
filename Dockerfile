@@ -7,10 +7,13 @@ RUN apt-get update && apt-get install -y curl git && rm -rf /var/lib/apt/lists/*
 RUN curl -fsSL https://ollama.ai/install.sh | sh
 
 # Python dependencies
-RUN pip install --no-cache-dir torch pandas numpy streamlit
+RUN pip install --no-cache-dir torch pandas numpy streamlit ollama
 
 WORKDIR /app
 COPY . /app
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 EXPOSE 8501
-CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+
+ENTRYPOINT ["/entrypoint.sh"]
