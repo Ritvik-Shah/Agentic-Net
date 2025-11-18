@@ -8,7 +8,8 @@ RUN curl -fsSL https://ollama.ai/install.sh | sh
 
 # Python dependencies
 #RUN pip install --no-cache-dir torch pandas numpy streamlit ollama 
-RUN pip install ----no-cache-dir -r /requirements.txt
+COPY ./requirements.txt /tmp/requirements.txt
+RUN pip install --no-cache-dir -r /tmp/requirements.txt
 
 WORKDIR /app
 COPY . /app
