@@ -7,7 +7,8 @@ RUN apt-get update && apt-get install -y curl git && rm -rf /var/lib/apt/lists/*
 RUN curl -fsSL https://ollama.ai/install.sh | sh
 
 # Python dependencies
-RUN pip install --no-cache-dir torch pandas numpy streamlit ollama
+#RUN pip install --no-cache-dir torch pandas numpy streamlit ollama 
+RUN pip install ----no-cache-dir -r /requirements.txt
 
 WORKDIR /app
 COPY . /app
